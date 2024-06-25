@@ -1,5 +1,6 @@
 #Utviklet av Niklas Brede, Asplan Viak
 
+import time
 import arcpy
 import pandas as pd
 import pathlib
@@ -43,7 +44,7 @@ for sheet_name in xls.sheet_names:
 
     # Read and process the data
     df = pd.read_excel(excel, sheet_name=sheet_name, skiprows=3)
-    df.columns = ['Dybde', 'Materiale', 'Tilstandsklasse']
+    df.columns = ['Dybde', 'Materiale', 'Tilstand']
     df = df.iloc[1:].reset_index(drop=True)
     dfs[sheet_name] = df
 
@@ -63,57 +64,37 @@ for sheet_name in xls.sheet_names:
     out_alias = None
     oid_type = None
 
-    arcpy.management.CreateFeatureclass(out_path, out_name, geometry_type, template, has_m, has_z, spatial_ref, config_keyword, spatial_grid_1, spatial_grid_2, spatial_grid_3, out_alias, oid_type)
+    arcpy.management.CreateFeatureclass(out_path, out_name, geometry_type, template, has_m, has_z, spatial_ref,
+                                        config_keyword, spatial_grid_1, spatial_grid_2, spatial_grid_3, out_alias,
+                                        oid_type)
+
+    # Add fields to the feature class
     arcpy.AddField_management(f"{out_path}/{out_name}", 'Dybde', 'DOUBLE')
     arcpy.AddField_management(f"{out_path}/{out_name}", 'Materiale', 'TEXT', field_length=255)
-    arcpy.AddField_management(f"{out_path}/{out_name}", 'Tilstandsklasse', 'TEXT', field_length=255)
+    arcpy.AddField_management(f"{out_path}/{out_name}", 'Tilstand', 'TEXT', field_length=255)
+    arcpy.AddField_management(f"{out_path}/{out_name}", 'Str', 'DOUBLE')
 
     feature_class = f"{out_path}/{out_name}"
 
     borehole_location_data = [extract_coords(sheet_name)[1], extract_coords(sheet_name)[0], out_name]
 
-    print(df)
 
     borehole_data = df
 
     with arcpy.da.InsertCursor(f"{out_path}/{out_name}",
-                               ['SHAPE@XY', 'Dybde', 'Materiale', 'Tilstandsklasse']) as cursor:
+                               ['SHAPE@XY', 'Dybde', 'Materiale', 'Tilstand', 'Str']) as cursor:
         for index, row in df.iterrows():
-            xy = (extract_coords(sheet_name)[1],
-                  extract_coords(sheet_name)[0])
-            cursor.insertRow([xy, row['Dybde'], row['Materiale'], row['Tilstandsklasse']])
-
-    #del cursor
-
-
-def check_bookmark(self):
-    ok = False
-    for m in aprx.listMaps():
-        for i in m.listBookmarks():
-            if i.name == self.bkmk:
-                ok = True
-                pass
-    if ok == False:
-        arcpy.AddError('Bookmark ble ikke funnet.')
-        exit()
+            xy = (extract_coords(sheet_name)[1], extract_coords(sheet_name)[0])
+            size = row['Dybde'] / 100
+            cursor.insertRow([xy, row['Dybde'], row['Materiale'], row['Tilstand'], size])
+        del cursor
 
 
-def _to_bookmark(self):
-    for m in aprx.listMaps():
-        for i in m.listBookmarks():
-            if i.name == self.bkmk:
-                if isinstance(aprx.activeView, arcpy._mp.Layout) == True:
-                    for j in range(len(aprx.listLayouts())):
-                        if aprx.activeView.name == aprx.listLayouts()[j].name:
-                            mf = aprx.listLayouts()[j].listElements('MAPFRAME_ELEMENT')[0]
-                            mf.zoomToBookmark(i)
-                            extent = mf.camera.getExtent()
-                            return extent
-                else:
-                    mv = aprx.activeView
-                    mv.zoomToBookmark(i)
-                    extent = mv.camera.getExtent()
-                    return extent
+
+
+
+
+
 
 
 
