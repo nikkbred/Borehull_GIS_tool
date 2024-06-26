@@ -28,6 +28,7 @@ def extract_coords(sheet_name):
 # Dictionary to store the DataFrames and metadata
 dfs = {}
 metadata = {}
+
 # Loop through each sheet and create a DataFrame
 for sheet_name in xls.sheet_names:
     global count
@@ -43,6 +44,7 @@ for sheet_name in xls.sheet_names:
     df.columns = df.iloc[0]
     df = df[1:].reset_index(drop=True)
     dfs[sheet_name] = df
+    arcpy.AddMessage(project_name)
     arcpy.AddMessage(df)
 
     # Set local variables
@@ -63,6 +65,7 @@ for sheet_name in xls.sheet_names:
     arcpy.management.CreateFeatureclass(out_path, out_name, geometry_type, template, has_m, has_z, spatial_ref,
                                         config_keyword, spatial_grid_1, spatial_grid_2, spatial_grid_3, out_alias,
                                         oid_type)
+
     # Add fields to the feature class
     for col in df.columns:
         if col.strip():  # Ensure the column name is not empty
@@ -81,7 +84,8 @@ for sheet_name in xls.sheet_names:
             cursor.insertRow([xy] + list(row))
         del cursor
 
-for i in range(count):
-    map_obj = aprx.listMaps()[3]
-    layer = map_obj.addDataFromPath(os.path.join(directory, f"Borehull\\BH{i + 1}.shp"))
+for j in range(len(aprx.listMaps())):
+    for i in range(count):
+        map_obj = aprx.listMaps()[j]
+        layer = map_obj.addDataFromPath(os.path.join(directory, f"Borehull\\BH{i + 1}.shp"))
 
