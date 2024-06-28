@@ -308,4 +308,4 @@ for coord, df in dfs_by_coord.items():
 
 
 
-#TODO: Legg til to kolloner i df; tiltaksklasse og hvilket stoff som er dimensjonerende for denne tiltaksklassen.
+#TODO: Legg til to kolloner i df; tiltaksklasse og hvilket stoff som er dimensjonerende for denne tiltaksklassen. + legg til  kart(ene)
