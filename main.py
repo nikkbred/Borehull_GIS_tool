@@ -15,232 +15,231 @@ xls = pd.ExcelFile(excel)
 def get_intervention_class(pollutant, value):
     if pollutant == 'As':
         if value < 8:
-            return "Meget god"
+            return 1
         elif 8 <= value < 20:
-            return "God"
+            return 2
         elif 20 <= value < 50:
-            return "Moderat"
+            return 3
         elif 50 <= value < 600:
-            return "Dårlig"
+            return 4
         elif 600 <= value <= 1000:
-            return "Svært dårlig"
+            return 5
 
     elif pollutant == 'Pb':
         if value < 60:
-            return "Meget god"
+            return 1
         elif 60 <= value < 100:
-            return "God"
+            return 2
         elif 100 <= value < 300:
-            return "Moderat"
+            return 3
         elif 300 <= value < 700:
-            return "Dårlig"
+            return 4
         elif 700 <= value <= 2500:
-            return "Svært dårlig"
+            return 5
 
     elif pollutant == 'Cd':
         if value < 1.5:
-            return "Meget god"
+            return 1
         elif 1.5 <= value < 10:
-            return "God"
+            return 2
         elif 10 <= value < 15:
-            return "Moderat"
+            return 3
         elif 15 <= value < 30:
-            return "Dårlig"
+            return 4
         elif 30 <= value <= 1000:
-            return "Svært dårlig"
+            return 5
 
     elif pollutant == 'Hg':
         if value < 1:
-            return "Meget god"
+            return 1
         elif 1 <= value < 2:
-            return "God"
+            return 2
         elif 2 <= value < 4:
-            return "Moderat"
+            return 3
         elif 4 <= value < 10:
-            return "Dårlig"
+            return 4
         elif 10 <= value <= 1000:
-            return "Svært dårlig"
+            return 5
 
     elif pollutant == 'Cu':
         if value < 100:
-            return "Meget god"
+            return 1
         elif 100 <= value < 200:
-            return "God"
+            return 2
         elif 200 <= value < 1000:
-            return "Moderat"
+            return 3
         elif 1000 <= value < 8500:
-            return "Dårlig"
+            return 4
         elif 8500 <= value <= 25000:
-            return "Svært dårlig"
+            return 5
 
     elif pollutant == 'Zn':
         if value < 200:
-            return "Meget god"
+            return 1
         elif 200 <= value < 500:
-            return "God"
+            return 2
         elif 500 <= value < 1000:
-            return "Moderat"
+            return 3
         elif 1000 <= value < 5000:
-            return "Dårlig"
+            return 4
         elif 5000 <= value <= 25000:
-            return "Svært dårlig"
+            return 5
 
     elif pollutant == 'Cr':
         if value < 50:
-            return "Meget god"
+            return 1
         elif 50 <= value < 200:
-            return "God"
+            return 2
         elif 200 <= value < 500:
-            return "Moderat"
+            return 3
         elif 500 <= value < 2800:
-            return "Dårlig"
+            return 4
         elif 2800 <= value <= 25000:
-            return "Svært dårlig"
+            return 5
 
     elif pollutant == 'Ni':
         if value < 60:
-            return "Meget god"
+            return 1
         elif 60 <= value < 135:
-            return "God"
+            return 2
         elif 135 <= value < 200:
-            return "Moderat"
+            return 3
         elif 200 <= value < 1200:
-            return "Dårlig"
+            return 4
         elif 1200 <= value <= 2500:
-            return "Svært dårlig"
+            return 5
 
     elif pollutant == 'PCB7':
         if value < 0.01:
-            return "Meget god"
+            return 1
         elif 0.01 <= value < 0.5:
-            return "God"
+            return 2
         elif 0.5 <= value < 1:
-            return "Moderat"
+            return 3
         elif 1 <= value < 5:
-            return "Dårlig"
+            return 4
         elif 5 <= value <= 50:
-            return "Svært dårlig"
+            return 5
 
     elif pollutant == 'DDT':
         if value < 0.04:
-            return "Meget god"
+            return 1
         elif 0.04 <= value < 4:
-            return "God"
+            return 2
         elif 4 <= value < 12:
-            return "Moderat"
+            return 3
         elif 12 <= value < 30:
-            return "Dårlig"
+            return 4
         elif 30 <= value <= 50:
-            return "Svært dårlig"
+            return 5
 
     elif pollutant == 'PAH-16EPA':
         if value < 2:
-            return "Meget god"
+            return 1
         elif 2 <= value < 8:
-            return "God"
+            return 2
         elif 8 <= value < 50:
-            return "Moderat"
+            return 3
         elif 50 <= value < 150:
-            return "Dårlig"
+            return 4
         elif 150 <= value <= 2500:
-            return "Svært dårlig"
+            return 5
 
     elif pollutant == 'BAP':
         if value < 0.1:
-            return "Meget god"
+            return 1
         elif 0.1 <= value < 0.5:
-            return "God"
+            return 2
         elif 0.5 <= value < 5:
-            return "Moderat"
+            return 3
         elif 5 <= value < 15:
-            return "Dårlig"
+            return 4
         elif 15 <= value <= 100:
-            return "Svært dårlig"
+            return 5
 
     elif pollutant == 'AlC8_10':
         if value <= 10:
-            return "Meget god"
+            return 1
         elif 10 < value <= 40:
-            return "God"
+            return 2
         elif 40 < value <= 50:
-            return "Moderat"
+            return 3
         elif 50 < value <= 20000:
-            return "Dårlig"
+            return 4
 
     elif pollutant == 'AlC10_12':
         if value < 50:
-            return "Meget god"
+            return 1
         elif 50 <= value < 60:
-            return "God"
+            return 2
         elif 60 <= value < 130:
-            return "Moderat"
+            return 3
         elif 130 <= value < 300:
-            return "Dårlig"
+            return 4
         elif 300 <= value <= 20000:
-            return "Svært dårlig"
+            return 5
 
     elif pollutant == 'AlC12_16' and 'AlC16_35':
         if value < 100:
-            return "Meget god"
+            return 1
         elif 100 <= value < 300:
-            return "God"
+            return 2
         elif 300 <= value < 600:
-            return "Moderat"
+            return 3
         elif 600 <= value < 2000:
-            return "Dårlig"
+            return 4
         elif 2000 <= value <= 20000:
-            return "Svært dårlig"
+            return 5
 
     elif pollutant == 'DEHP':
         if value < 2.8:
-            return "Meget god"
+            return 1
         elif 2.8 <= value < 25:
-            return "God"
+            return 2
         elif 25 <= value < 40:
-            return "Moderat"
+            return 3
         elif 40 <= value < 60:
-            return "Dårlig"
+            return 4
         elif 60 <= value <= 5000:
-            return "Svært dårlig"
+            return 5
 
     elif pollutant == 'Dioksiner/furaner':
         if value < 0.00001:
-            return "Meget god"
+            return 1
         elif 0.00001 <= value < 0.00002:
-            return "God"
+            return 2
         elif 0.00002 <= value < 0.0001:
-            return "Moderat"
+            return 3
         elif 0.0001 <= value < 0.00036:
-            return "Dårlig"
+            return 4
         elif 0.00036 <= value <= 0.015:
-            return "Svært dårlig"
+            return 5
 
     elif pollutant == 'Fenol':
         if value < 0.1:
-            return "Meget god"
+            return 1
         elif 0.1 <= value < 4:
-            return "God"
+            return 2
         elif 4 <= value < 40:
-            return "Moderat"
+            return 3
         elif 40 <= value < 400:
-            return "Dårlig"
+            return 4
         elif 400 <= value <= 25000:
-            return "Svært dårlig"
+            return 5
 
     elif pollutant == 'BENZ':
         if value < 0.01:
-            return "Meget god"
+            return 1
         elif 0.01 <= value < 0.015:
-            return "God"
+            return 2
         elif 0.015 <= value < 0.04:
-            return "Moderat"
+            return 3
         elif 0.04 <= value < 0.05:
-            return "Dårlig"
+            return 4
         elif 0.05 <= value <= 1000:
-            return "Svært dårlig"
+            return 5
     else:
-        return "Pollutant not found"
-
+        return 0
 
 
 
@@ -255,11 +254,16 @@ df = pd.read_excel(excel, sheet_name=sheet_name)
 df = df.replace(',', '.', regex=True)
 df['Koordinat_O'] = pd.to_numeric(df['Koordinat_O'], errors='coerce')
 df['Koordinat_N'] = pd.to_numeric(df['Koordinat_N'], errors='coerce')
+df['Verdi'] = pd.to_numeric(df['Verdi'], errors='coerce')
 
 dfs[sheet_name] = df
 
-coords = df[['Koordinat_O','Koordinat_N']].drop_duplicates()
+# Adds column to DataFrame containing the contamination class and applicable contamination type
 
+df['Tilstandsklasse'] = df.apply(lambda row: get_intervention_class(row['Stoff_ID'], row['Verdi']), axis=1)
+
+
+coords = df[['Koordinat_O', 'Koordinat_N']].drop_duplicates()
 
 # Initialize a dictionary to hold the DataFrames for each unique coordinate
 dfs_by_coord = {}
@@ -269,14 +273,29 @@ for coord in coords.itertuples(index=False, name=None):
     # Filter the original DataFrame for the current coordinate
     df_filtered = df[(df['Koordinat_O'] == coord[0]) & (df['Koordinat_N'] == coord[1])]
 
+
+    # Calculate the highest pollution class for each depth
+    def highest_pollution_class(group):
+        highest_class = group['Tilstandsklasse'].max()
+        substances = group[group['Tilstandsklasse'] == highest_class]['Stoff_ID'].tolist()
+        return pd.Series({
+            'H_tilstand': highest_class,
+            'Dim_stoff': ', '.join(substances)
+        })
+
+
+    highest_pollution = df_filtered.groupby('Dyp_nedre').apply(highest_pollution_class).reset_index()
+    df_filtered = df_filtered.merge(highest_pollution, on='Dyp_nedre', how='left')
+
     # Add the filtered DataFrame to the dictionary with the coordinate as the key
     dfs_by_coord[coord] = df_filtered
 
-# Now dfs_by_coord contains DataFrames for each unique coordinate
-for coord, df_part in dfs_by_coord.items():
+# Example of how to access and print the processed DataFrame for a specific coordinate
+for coord, df in dfs_by_coord.items():
     print(f"Coordinate: {coord}")
-    print(df_part)
-    print()
+    print(df)
+
+
 
 gdb_name = "Mal_skredfarevurdering.gdb"
 
@@ -295,15 +314,15 @@ for coord, df in dfs_by_coord.items():
 
     # Add fields for the attributes
     arcpy.AddField_management(feature_class_path, "Dybde", "SHORT")
-    arcpy.AddField_management(feature_class_path, "Tiltaksklasse", "SHORT")
+    arcpy.AddField_management(feature_class_path, "Tilstand", "SHORT")
     arcpy.AddField_management(feature_class_path, "Dim_stoff", "TEXT")
 
 
-    with arcpy.da.InsertCursor(feature_class_path, ["SHAPE@XY", "Dybde", "Tiltaksklasse", "Dim_stoff"]) as cursor:
+    with arcpy.da.InsertCursor(feature_class_path, ["SHAPE@XY", "Dybde", "Tilstand", "Dim_stoff"]) as cursor:
         for idx, row in df.iterrows():
             dybde_n = row['Dyp_nedre']
-            tiltk = row['WKID']
-            stoff = row['Stoff_ID']
+            tiltk = row['H_tilstand']
+            stoff = row['Dim_stoff']
             cursor.insertRow([(coord[0], coord[1]), dybde_n, tiltk, stoff])
 
 
