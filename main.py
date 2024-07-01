@@ -296,6 +296,10 @@ for coord, df in dfs_by_coord.items():
     print(df)
 
 
+for i in range(len(aprx.listMaps())):
+    map_obj = aprx.listMaps()[i].name
+    print(str(i) + ' ' + map_obj)
+
 
 gdb_name = "Mal_skredfarevurdering.gdb"
 
@@ -330,5 +334,15 @@ for coord, df in dfs_by_coord.items():
             stoff = row['Dim_stoff']
             cursor.insertRow([(coord[0], coord[1]), koord_id, provenavn, dybde_n, tilstdkl, stoff])
 
+'''
+for i in range(1,koord_id):
+    map_obj = aprx.listMaps()[4]
+    oversikt = map_obj.addDataFromPath(os.path.join(directory, f"\Mal_skredfarevurdering.gdb\Prøvepunkt_{i}"))
+    map_obj2 = aprx.listMaps()[3]
+    tilst_map = map_obj2.addDataFromPath(os.path.join(directory, f"\Mal_skredfarevurdering.gdb\Prøvepunkt_{koord_id}"))
+
+    arcpy.management.ApplySymbologyFromLayer(f"\Mal_skredfarevurdering.gdb\Prøvepunkt_{koord_id}", "LYR\Tilstandsklasser.lyrx")'''
+
+#TODO: Legg til kart og riktig sym
 
 
