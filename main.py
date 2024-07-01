@@ -302,10 +302,12 @@ gdb_name = "Mal_skredfarevurdering.gdb"
 # Define the path to the new geodatabase
 gdb_path = f"{directory}/{gdb_name}"
 
+koord_id = 0
 # Loop through each coordinate and dataframe pair
 for coord, df in dfs_by_coord.items():
-    point_name = df['Provepunkt_Navn'].iloc[0]
-    feature_class_name = f"{point_name}"
+    koord_id += 1
+    point_name = f"Prøvepunkt_{koord_id}"
+    feature_class_name = point_name
     feature_class_path = f"{gdb_path}/{feature_class_name}"
 
     # Create a new feature class for each point
@@ -313,18 +315,20 @@ for coord, df in dfs_by_coord.items():
                                         spatial_reference=arcpy.SpatialReference(25833))
 
     # Add fields for the attributes
+    arcpy.AddField_management(feature_class_path, "Koord_ID", "SHORT")
+    arcpy.AddField_management(feature_class_path, "Provepunkt_Navn", "TEXT")
     arcpy.AddField_management(feature_class_path, "Dybde", "SHORT")
-    arcpy.AddField_management(feature_class_path, "Tilstand", "SHORT")
+    arcpy.AddField_management(feature_class_path, "Tilstandsklasse", "SHORT")
     arcpy.AddField_management(feature_class_path, "Dim_stoff", "TEXT")
 
 
-    with arcpy.da.InsertCursor(feature_class_path, ["SHAPE@XY", "Dybde", "Tilstand", "Dim_stoff"]) as cursor:
+    with arcpy.da.InsertCursor(feature_class_path, ["SHAPE@XY", "Koord_ID", "Provepunkt_Navn", "Dybde", "Tilstandsklasse", "Dim_stoff"]) as cursor:
         for idx, row in df.iterrows():
             dybde_n = row['Dyp_nedre']
-            tiltk = row['H_tilstand']
+            provenavn = row['Provepunkt_Navn']
+            tilstdkl = row['H_tilstand']
             stoff = row['Dim_stoff']
-            cursor.insertRow([(coord[0], coord[1]), dybde_n, tiltk, stoff])
+            cursor.insertRow([(coord[0], coord[1]), koord_id, provenavn, dybde_n, tilstdkl, stoff])
 
 
 
-#TODO: Legg til to kolloner i df; tiltaksklasse og hvilket stoff som er dimensjonerende for denne tiltaksklassen. + legg til  kart(ene)
