@@ -484,9 +484,9 @@ for coord, df in dfs_by_coord.items():
 for i in range(len(aprx.listMaps())):
     map_obj = aprx.listMaps()[i].name
     print(str(i) + ' ' + map_obj)
-gdb_name = "Mal_skredfarevurdering.gdb"
+gdb_name = "Miljøgeologi_GISmal.gdb"
 # Define the path to the new geodatabase
-gdb_path = f"{directory}/Provetakninger"
+gdb_path = f"{directory}/Provepunkt"
 koord_id = 0
 # Loop through each coordinate and dataframe pair
 for coord, df in dfs_by_coord.items():
@@ -536,7 +536,7 @@ def _set_symbology(path_lyrx, _map):
 map_obj = aprx.listMaps()[4]
 map_obj2 = aprx.listMaps()[3]
 for i in range(koord_id):
-    feature_class_path = os.path.join(directory, f"Provetakninger/Provepunkt_{i + 1}.shp")
+    feature_class_path = os.path.join(directory, f"Provepunkt/Provepunkt_{i + 1}.shp")
     try:
         tilst_map = map_obj2.addDataFromPath(feature_class_path)
         layer = map_obj.addDataFromPath(feature_class_path)
