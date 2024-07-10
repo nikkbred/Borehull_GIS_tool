@@ -1,1 +1,1 @@
-Tool for ArcGIS Pro som tar inn en excelfil med borehullsdata og setter inn borerhullene som feature classes i alle kart i ett prosjekt.
+Tool i ArcGIS Pro for å importere prøvetakninger fra analyseresultater fra Eurofins. Legger til provepunkter med utregninig tilstandsklasse for hver dybdeenhet. For kartert "Tiltaksklasser" legges også symbologi til punktene.
