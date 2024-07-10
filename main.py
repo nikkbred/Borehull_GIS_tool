@@ -545,3 +545,37 @@ for i in range(koord_id):
 
     except RuntimeError as e:
         arcpy.AddMessage(f"Failed to add data for Provepunkt_{i}: {e}")
+
+try:
+    for i in range(len(aprx.listLayouts())):
+        if aprx.listLayouts()[i].name == 'Oversiktskart':
+            layout = aprx.listLayouts()[i]
+        else:
+            pass
+except:
+    arcpy.AddMessage('Layouten Oversiktskart ble ikke funnet')
+
+legend = layout.listElements('LEGEND_ELEMENT', 'Tegnforklaring')[0]
+
+seen = set()
+items_to_remove = []
+
+for itm in legend.items:
+    if itm.name in seen:
+        items_to_remove.append(itm)
+    else:
+        seen.add(itm.name)
+
+for itm in items_to_remove:
+    legend.removeItem(itm)
+
+lyt_cim = layout.getDefinition('V2')
+
+for elm in lyt_cim.elements:
+    if elm.name == "Tegnforklaring":
+        for itm in elm.items:
+            itm.showLayerName = False
+
+layout.setDefinition(lyt_cim)
+
+aprx.save()
