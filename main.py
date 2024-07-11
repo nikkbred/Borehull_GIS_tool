@@ -533,10 +533,26 @@ def _set_symbology(path_lyrx, _map):
 
 
 # Adding data to the map
-map_obj = aprx.listMaps()[4]
-map_obj2 = aprx.listMaps()[3]
+try:
+    for i in range(len(aprx.listMaps())):
+        if aprx.listMaps()[i].name == 'Oversiktskart':
+            map_obj = aprx.listMaps()[i]
+        else:
+            pass
+except:
+    arcpy.AddMessage('Oversiktskart ble ikke funnet')
+
+try:
+    for i in range(len(aprx.listMaps())):
+        if aprx.listMaps()[i].name == 'Tilstandsklasse':
+            map_obj2 = aprx.listMaps()[i]
+        else:
+            pass
+except:
+    arcpy.AddMessage('Tilstandsklassekart ble ikke funnet')
+
 for i in range(koord_id):
-    feature_class_path = os.path.join(directory, f"Provepunkt/Provepunkt_{i + 1}.shp")
+    feature_class_path = os.path.join(directory, f"Provepunkt/Provepunkt{i + 1}.shp")
     try:
         tilst_map = map_obj2.addDataFromPath(feature_class_path)
         layer = map_obj.addDataFromPath(feature_class_path)
@@ -545,6 +561,8 @@ for i in range(koord_id):
 
     except RuntimeError as e:
         arcpy.AddMessage(f"Failed to add data for Provepunkt_{i}: {e}")
+
+time.sleep(2)
 
 try:
     for i in range(len(aprx.listLayouts())):
