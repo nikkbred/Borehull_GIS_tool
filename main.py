@@ -147,7 +147,7 @@ def get_intervention_class(pollutant, value):
             return 4
         elif 15 <= value <= 100:
             return 5
-    elif pollutant == 'AlC8_10':
+    elif pollutant == 'ALC8_10':
         if value <= 10:
             return 1
         elif 10 < value <= 40:
@@ -156,7 +156,7 @@ def get_intervention_class(pollutant, value):
             return 3
         elif 50 < value <= 20000:
             return 4
-    elif pollutant == 'AlC10_12':
+    elif pollutant == 'ALC10_12':
         if value < 50:
             return 1
         elif 50 <= value < 60:
@@ -167,7 +167,7 @@ def get_intervention_class(pollutant, value):
             return 4
         elif 300 <= value <= 20000:
             return 5
-    elif pollutant == 'AlC12_16' and 'AlC16_35':
+    elif pollutant == 'ALC12_16' and 'ALC16_35':
         if value < 100:
             return 1
         elif 100 <= value < 300:
@@ -359,7 +359,7 @@ def get_intervention_class_trondelag(pollutant, value):
             return 4
         elif 15 <= value <= 100:
             return 5
-    elif pollutant == 'AlC8_10':
+    elif pollutant == 'ALC8_10':
         if value <= 10:
             return 1
         elif 10 < value <= 40:
@@ -368,7 +368,7 @@ def get_intervention_class_trondelag(pollutant, value):
             return 3
         elif 50 < value <= 20000:
             return 4
-    elif pollutant == 'AlC10_12':
+    elif pollutant == 'ALC10_12':
         if value < 50:
             return 1
         elif 50 <= value < 60:
@@ -379,7 +379,7 @@ def get_intervention_class_trondelag(pollutant, value):
             return 4
         elif 300 <= value <= 20000:
             return 5
-    elif pollutant == 'AlC12_16' and 'AlC16_35':
+    elif pollutant == 'ALC12_16' and 'ALC16_35':
         if value < 100:
             return 1
         elif 100 <= value < 300:
