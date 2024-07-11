@@ -569,7 +569,7 @@ for itm in legend.items:
 for itm in items_to_remove:
     legend.removeItem(itm)
 
-lyt_cim = layout.getDefinition('V2')
+lyt_cim = layout.getDefinition('V3')
 
 for elm in lyt_cim.elements:
     if elm.name == "Tegnforklaring":
